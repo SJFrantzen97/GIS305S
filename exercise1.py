@@ -1,9 +1,9 @@
 import arcpy
-arcpy.env.workspace = r"C:\Users\David Neufeld\Documents\ArcGIS\GIS305\Data\Admin\AdminData.gdb"
+arcpy.env.workspace = r"C:\Users\Spencer\Desktop\FRCCSpring2025\ProgrammingGIS\Assignments\Assignment1b\Assignment1b.gdb"
 arcpy.env.overwriteOutput = True
-arcpy.SelectLayerByAttribute_management("cities", "CLEAR_SELECTION")
 
-flayer = arcpy.MakeFeatureLayer_management("cities", "Cities_Layer")
+
+flayer = arcpy.MakeFeatureLayer_management("U.S. Cities", "Cities_Layer")
 
 qry = "POP1990 > 20000"
 arcpy.management.SelectLayerByAttribute(flayer, "NEW_SELECTION", qry)
@@ -11,12 +11,12 @@ arcpy.management.SelectLayerByAttribute(flayer, "NEW_SELECTION", qry)
 my_cnt = arcpy.management.GetCount(flayer)
 print(f"Selected cities is: {my_cnt}")
 
-arcpy.management.SelectLayerByLocation(flayer, "WITHIN_A_DISTANCE", "us_rivers", "10 miles", "SUBSET_SELECTION")
+arcpy.management.SelectLayerByLocation(flayer, "WITHIN_A_DISTANCE", "U.S. Rivers (Generalized)", "10 miles", "SUBSET_SELECTION")
 
 my_cnt = arcpy.management.GetCount(flayer)
 print(f"Selected cities is: {my_cnt}")
 
-flayer = arcpy.MakeFeatureLayer_management("cities", "Cities_Layer")
+
 field = 'POP1990'
 total = 0
 i = 1
